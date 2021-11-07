@@ -6,10 +6,12 @@ public class Main {
 		// input for Heap creation
 		int[] intArray = new int[] { 45, 65, 72, 40, 90, 82, 81, 96, 99 };
 		
+		System.out.println("\nMin heap...\n");
 		Context context = new Context(new MinHeapCompare());
 		heap.setStrategy(context);
 		heap.createHeap(intArray);
 		
+		System.out.println("\nMax heap...\n");
 		heap = new Heap();
 		context = new Context(new MaxHeapCompare());
 		heap.setStrategy(context);

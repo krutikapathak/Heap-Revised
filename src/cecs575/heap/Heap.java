@@ -1,7 +1,6 @@
 package cecs575.heap;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.function.Consumer;
 
@@ -32,13 +31,13 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 			if (!isAdded)
 				System.out.println("Heap not created");
 		}
-//		Object[] array = toArray();
-//		for(Object o : array) {
-//            Integer s = (Integer) o;
-//             
-//            System.out.println(s);
-//        }
-		fetchMinHeap();
+		System.out.println("toArray(): ");
+		Object[] array = toArray();
+		for(Object o : array) {
+            Integer s = (Integer) o;
+             
+            System.out.println(s);
+        }
 	}
 
 	@Override
@@ -54,42 +53,12 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 		if (element == null)
 			return;
 		element.forEach(action);
-//		super.forEach(action);
 	}
 
 	@Override
 	public Object[] toArray() {
 		ArrayList<Integer> heapElements = new ArrayList<Integer>();
-		this.forEach(new Consumer<Integer>() {
-			@Override
-			public void accept(Integer root) {
-				heapElements.add(root.intValue());
-			}
-		});
-//		this.forEach((value) -> heapElements.add(value));
-//		return heapElements;
-//		return super.toArray();
+		this.forEach((value) -> heapElements.add(value));
 		return heapElements.toArray();
-	}
-
-	// method to fetch post order and pre order of min heap
-	protected void fetchMinHeap() {
-
-		// fetch min heap in post order (left, right, root)
-		System.out.println("\nPost order traversal of heap: \n");
-		ArrayList<Integer> orderList = element.traverseMinHeap(element, "post", orderList = new ArrayList<>());
-		printMinHeap(orderList);
-
-		// fetch odd numbers of min heap in pre order
-		System.out.println("\nPre order traversal of heap for odd numbers: \n");
-		orderList = element.traverseMinHeap(element, "pre", orderList = new ArrayList<>());
-		printMinHeap(orderList);
-	}
-
-	// method to print min heap in post and pre order
-	protected void printMinHeap(List<Integer> orderList) {
-		for (Integer orderNum : orderList) {
-			System.out.println(orderNum);
-		}
 	}
 }

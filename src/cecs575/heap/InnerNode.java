@@ -1,6 +1,5 @@
 package cecs575.heap;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
@@ -95,30 +94,6 @@ public class InnerNode implements Iterable<Integer> {
 		return findMaxHeight(findHeight(root.getLeft()), findHeight(root.getRight())) + 1;
 	}
 
-	// method to traverse min heap
-	protected ArrayList<Integer> traverseMinHeap(InnerNode node, String indicator, ArrayList<Integer> list) {
-		if (node == null)
-			return list;
-
-		// Pre-order traversal of heap to fetch odd numbers
-		if (indicator == "pre") {
-			if (node.getNodeVal() % 2 != 0) {
-				list.add(node.getNodeVal());
-			}
-		}
-
-		traverseMinHeap(node.getLeft(), indicator, list);
-
-		traverseMinHeap(node.getRight(), indicator, list);
-
-		// Post-order traversal of heap
-		if (indicator == "post") {
-			list.add(node.getNodeVal());
-		}
-
-		return list;
-	}
-
 	@Override
 	public Iterator<Integer> iterator() {
 		// TODO Auto-generated method stub
@@ -127,11 +102,10 @@ public class InnerNode implements Iterable<Integer> {
 
 	@Override
 	public void forEach(Consumer<? super Integer> action) {
-		if (this.left != null || this.right != null) {
+		if (this.left != null)
 			this.left.forEach(action);
-			action.accept(nodeVal);
+		action.accept(this.getNodeVal());
+		if (this.right != null)
 			this.right.forEach(action);
-		}
-//		Iterable.super.forEach(action);
 	}
 }
