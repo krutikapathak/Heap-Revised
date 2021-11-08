@@ -10,11 +10,13 @@ public class Main {
 		Context context = new Context(new MinHeapCompare());
 		heap.setStrategy(context);
 		heap.createHeap(intArray);
+		System.out.println(heap.toString());
 		
 		System.out.println("\nMax heap...\n");
 		heap = new Heap();
 		context = new Context(new MaxHeapCompare());
 		heap.setStrategy(context);
 		heap.createHeap(intArray);
+		System.out.println(heap.toString());
 	}
 }

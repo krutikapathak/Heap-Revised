@@ -14,14 +14,10 @@ import java.util.function.Consumer;
 public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	InnerNode node = new InnerNode();
 	Context strategy;
-	InnerNode element;
+	Node element = new NullNode();
 
 	public void setStrategy(Context context) {
 		strategy = context;
-	}
-
-	public Context getStrategy() {
-		return strategy;
 	}
 
 	protected void createHeap(int[] intArray) {
@@ -31,26 +27,25 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 			if (!isAdded)
 				System.out.println("Heap not created");
 		}
-		System.out.println("toArray(): ");
-		Object[] array = toArray();
-		for(Object o : array) {
-            Integer s = (Integer) o;
-             
-            System.out.println(s);
-        }
+//		Object[] array = toArray();
+//		for (Object o : array) {
+//			Integer s = (Integer) o;
+//
+//			System.out.println(s);
+//		}
 	}
 
 	@Override
 	public boolean add(Integer num) {
-		element = node.insert(element, num.intValue(), getStrategy());
-		if (element == null)
+		element = node.insert(element, num.intValue(), strategy);
+		if (element.isNil())
 			return false;
 		return true;
 	}
 
 	@Override
 	public void forEach(Consumer<? super Integer> action) {
-		if (element == null)
+		if (element.isNil())
 			return;
 		element.forEach(action);
 	}
@@ -58,7 +53,12 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	@Override
 	public Object[] toArray() {
 		ArrayList<Integer> heapElements = new ArrayList<Integer>();
-		this.forEach((value) -> heapElements.add(value));
+		this.forEach(value -> heapElements.add(value));
 		return heapElements.toArray();
+	}
+
+	@Override
+	public String toString() {
+		return element.toString();
 	}
 }

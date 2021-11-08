@@ -10,44 +10,16 @@ import java.util.function.Consumer;
  */
 
 // class to represent Nodes in min heap- Node attributes, height and traversal
-public class InnerNode implements Iterable<Integer> {
-	private InnerNode left;
-	private InnerNode right;
-	private int nodeVal;
-
-	// Constructors
+public class InnerNode extends Node {
+	
 	public InnerNode() {
-	}
-
-	// getters for node class member variables
-	public InnerNode getLeft() {
-		return left;
-	}
-
-	public InnerNode getRight() {
-		return right;
-	}
-
-	public int getNodeVal() {
-		return nodeVal;
-	}
-
-	// setters for node class member variables
-	public void setLeft(InnerNode left) {
-		this.left = left;
-	}
-
-	public void setRight(InnerNode right) {
-		this.right = right;
-	}
-
-	public void setNodeVal(int nodeVal) {
-		this.nodeVal = nodeVal;
+		this.left = new NullNode();
+		this.right = new NullNode();
 	}
 
 	// method to add integers to min heap
-	protected InnerNode insert(InnerNode root, int num, Context context) {
-		if (root == null) {
+	protected Node insert(Node root, int num, Context context) {
+		if (root.isNil()) {
 			root = new InnerNode();
 			root.setNodeVal(num);
 			return root;
@@ -71,41 +43,52 @@ public class InnerNode implements Iterable<Integer> {
 		return root;
 	}
 
-	protected int swapNode(InnerNode root, int num) {
+	protected int swapNode(Node root, int num) {
 		int temp = root.getNodeVal();
 		root.setNodeVal(num);
 		num = temp;
 		return num;
 	}
 
-	// method to find maximum of left or right sub-heap height
-	protected int findMaxHeight(int lHeight, int rHeight) {
-		if (lHeight >= rHeight)
-			return lHeight;
-		else
-			return rHeight;
+	// method to find height for the given root
+	@Override
+	public int findHeight(Node node) {
+		return 1 + Math.max(node.findHeight(node.getLeft()), node.findHeight(node.getRight()));
 	}
 
-	// method to find height for the given root
-	protected int findHeight(InnerNode root) {
-		if (root == null)
-			return 0;
+	@Override
+	public void forEach(Consumer<? super Integer> action) {
+		if (!this.getLeft().isNil())
+			this.getLeft().forEach(action);
+		action.accept(this.getNodeVal());
+		if (!this.getRight().isNil())
+			this.getRight().forEach(action);
+	}
 
-		return findMaxHeight(findHeight(root.getLeft()), findHeight(root.getRight())) + 1;
+	@Override
+	public boolean isNil() {
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder inOrderHeapElements = new StringBuilder();
+		return toString(this, inOrderHeapElements);
+	}
+	
+	private String toString(Node root, StringBuilder string) {
+		if (root.isNil())
+			return "";
+		toString(root.left, string);
+		string.append(root.getNodeVal());
+		string.append(" ");
+		toString(root.right, string);
+		return string.toString();
 	}
 
 	@Override
 	public Iterator<Integer> iterator() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void forEach(Consumer<? super Integer> action) {
-		if (this.left != null)
-			this.left.forEach(action);
-		action.accept(this.getNodeVal());
-		if (this.right != null)
-			this.right.forEach(action);
 	}
 }
