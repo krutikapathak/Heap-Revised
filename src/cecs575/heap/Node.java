@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 public abstract class Node implements Iterable<Integer> {
 	protected Node left;
 	protected Node right;
-	private int nodeVal;
+	protected int nodeVal;
 
 	public Node getLeft() {
 		return left;

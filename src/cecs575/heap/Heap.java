@@ -1,6 +1,7 @@
 package cecs575.heap;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.function.Consumer;
 
@@ -10,14 +11,18 @@ import java.util.function.Consumer;
  *
  */
 
-// class for min heap creation and printing the heap in pre/post order
+// class for heap creation and printing the heap in In-order
 public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	InnerNode node = new InnerNode();
-	Context strategy;
+	private Context strategy;
 	Node element = new NullNode();
 
 	public void setStrategy(Context context) {
 		strategy = context;
+	}
+
+	public Node getElement() {
+		return this.element;
 	}
 
 	protected void createHeap(int[] intArray) {
@@ -27,12 +32,6 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 			if (!isAdded)
 				System.out.println("Heap not created");
 		}
-//		Object[] array = toArray();
-//		for (Object o : array) {
-//			Integer s = (Integer) o;
-//
-//			System.out.println(s);
-//		}
 	}
 
 	@Override
@@ -53,12 +52,17 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	@Override
 	public Object[] toArray() {
 		ArrayList<Integer> heapElements = new ArrayList<Integer>();
-		this.forEach(value -> heapElements.add(value));
+		this.forEach(number -> heapElements.add(number));
 		return heapElements.toArray();
 	}
 
 	@Override
 	public String toString() {
 		return element.toString();
+	}
+
+	@Override
+	public Iterator<Integer> iterator() {
+		return null;
 	}
 }

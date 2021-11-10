@@ -44,7 +44,7 @@ public class InnerNode extends Node {
 	}
 
 	protected int swapNode(Node root, int num) {
-		int temp = root.getNodeVal();
+		int temp = root.nodeVal;
 		root.setNodeVal(num);
 		num = temp;
 		return num;
@@ -58,11 +58,11 @@ public class InnerNode extends Node {
 
 	@Override
 	public void forEach(Consumer<? super Integer> action) {
-		if (!this.getLeft().isNil())
-			this.getLeft().forEach(action);
+		if (!this.left.isNil())
+			this.left.forEach(action);
 		action.accept(this.getNodeVal());
-		if (!this.getRight().isNil())
-			this.getRight().forEach(action);
+		if (!this.right.isNil())
+			this.right.forEach(action);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class InnerNode extends Node {
 		if (root.isNil())
 			return "";
 		toString(root.left, string);
-		string.append(root.getNodeVal());
+		string.append(root.nodeVal);
 		string.append(" ");
 		toString(root.right, string);
 		return string.toString();
