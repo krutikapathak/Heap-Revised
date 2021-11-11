@@ -11,26 +11,25 @@ import java.util.function.Consumer;
 
 // class to represent Nodes in min heap- Node attributes, height and traversal
 public class InnerNode extends Node {
-	
+
 	public InnerNode() {
 		this.left = new NullNode();
 		this.right = new NullNode();
 	}
 
 	// method to add integers to min heap
-	protected Node insert(Node root, int num, Context context) {
+	protected Node insert(Node root, Integer num, Context context) {
 		if (root.isNil()) {
 			root = new InnerNode();
 			root.setNodeVal(num);
 			return root;
 		}
-
 		if (context.executeStrategy(root.getNodeVal(), num))
 			num = swapNode(root, num);
 
 		// calculate left and right sub-heap heights
-		int lHeight = root.findHeight(root.getLeft());
-		int rHeight = root.findHeight(root.getRight());
+		Integer lHeight = root.findHeight(root.getLeft());
+		Integer rHeight = root.findHeight(root.getRight());
 
 		// insert integer in left sub-heap
 		if (lHeight <= rHeight)
@@ -43,8 +42,8 @@ public class InnerNode extends Node {
 		return root;
 	}
 
-	protected int swapNode(Node root, int num) {
-		int temp = root.nodeVal;
+	protected Integer swapNode(Node root, Integer num) {
+		Integer temp = root.nodeVal;
 		root.setNodeVal(num);
 		num = temp;
 		return num;
@@ -52,7 +51,7 @@ public class InnerNode extends Node {
 
 	// method to find height for the given root
 	@Override
-	public int findHeight(Node node) {
+	public Integer findHeight(Node node) {
 		return 1 + Math.max(node.findHeight(node.getLeft()), node.findHeight(node.getRight()));
 	}
 
@@ -69,13 +68,13 @@ public class InnerNode extends Node {
 	public boolean isNil() {
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder inOrderHeapElements = new StringBuilder();
 		return toString(this, inOrderHeapElements);
 	}
-	
+
 	private String toString(Node root, StringBuilder string) {
 		if (root.isNil())
 			return "";

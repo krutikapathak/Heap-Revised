@@ -25,10 +25,13 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 		return this.element;
 	}
 
-	protected void createHeap(int[] intArray) {
-		for (int i = 0; i < intArray.length; i++) {
-			Integer num = Integer.valueOf(intArray[i]);
-			boolean isAdded = add(num);
+	protected void createHeap(Integer[] intArray) {
+		for (Integer i = 0; i < intArray.length; i++) {
+			boolean isAdded;
+			if (intArray[i] != null)
+				isAdded = add(intArray[i]);
+			else
+				continue;
 			if (!isAdded)
 				System.out.println("Heap not created");
 		}
@@ -36,7 +39,7 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 
 	@Override
 	public boolean add(Integer num) {
-		element = node.insert(element, num.intValue(), strategy);
+		element = node.insert(element, num, strategy);
 		if (element.isNil())
 			return false;
 		return true;
@@ -51,9 +54,9 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 
 	@Override
 	public Object[] toArray() {
-		ArrayList<Integer> heapElements = new ArrayList<Integer>();
-		this.forEach(number -> heapElements.add(number));
-		return heapElements.toArray();
+		ArrayList<Integer> inOrderHeapElements = new ArrayList<Integer>();
+		this.forEach(number -> inOrderHeapElements.add(number));
+		return inOrderHeapElements.toArray();
 	}
 
 	@Override

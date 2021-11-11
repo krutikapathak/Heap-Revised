@@ -33,9 +33,6 @@ public class OddHeapDecorator extends HeapDecorator {
 			Integer no = iterator.next();
 			results.add(no);
 		}
-		for (Integer num : results) {
-			System.out.println(num.intValue());
-		}
 		return results.toArray();
 	}
 }

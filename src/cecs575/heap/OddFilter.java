@@ -18,8 +18,9 @@ public class OddFilter implements Iterator<Integer> {
 			return;
 
 		pushInOrder(current.getRight());
-
-		stack.push(current);
+		
+		if(current.getNodeVal() != null)
+			stack.push(current);
 
 		pushInOrder(current.getLeft());
 	}
@@ -37,7 +38,7 @@ public class OddFilter implements Iterator<Integer> {
 
 	@Override
 	public Integer next() {
-//		Node result = stack.pop();
-		return Integer.valueOf(stack.pop().getNodeVal());
+		Node result = stack.pop();
+		return result.getNodeVal();
 	}
 }

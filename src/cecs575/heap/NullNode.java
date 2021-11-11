@@ -16,7 +16,7 @@ public class NullNode extends Node {
 	}
 
 	@Override
-	public int findHeight(Node node) {
+	public Integer findHeight(Node node) {
 		return 0;
 	}
 

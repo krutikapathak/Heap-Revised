@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		Heap heap = new Heap();
 		// input for Heap creation
-		int[] intArray = new int[] { 45, 65, 72, 40, 90, 82, 81, 96, 99 };
+		Integer[] intArray = new Integer[] { null, 45, 65, 72, null, 40, 90, 82, 81, 96, 99, null, null, null };
 		Iterable input;
 		
 		System.out.println("\nMin heap...\n");

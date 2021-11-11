@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 public abstract class Node implements Iterable<Integer> {
 	protected Node left;
 	protected Node right;
-	protected int nodeVal;
+	protected Integer nodeVal;
 
 	public Node getLeft() {
 		return left;
@@ -23,17 +23,17 @@ public abstract class Node implements Iterable<Integer> {
 		this.right = right;
 	}
 
-	public int getNodeVal() {
+	public Integer getNodeVal() {
 		return nodeVal;
 	}
 
-	public void setNodeVal(int nodeVal) {
+	public void setNodeVal(Integer nodeVal) {
 		this.nodeVal = nodeVal;
 	}
 
 	public abstract boolean isNil();
 
-	public abstract int findHeight(Node node);
+	public abstract Integer findHeight(Node node);
 
 	public abstract void forEach(Consumer<? super Integer> action);
 	
