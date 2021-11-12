@@ -39,8 +39,9 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 
 	@Override
 	public boolean add(Integer num) {
-		element = node.insert(element, num, strategy);
-		if (element.isNil())
+		if (num != null)
+			element = node.insert(element, num, strategy);
+		if (element.isNil()|| num == null)
 			return false;
 		return true;
 	}
