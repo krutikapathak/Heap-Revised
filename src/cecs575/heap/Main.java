@@ -5,7 +5,7 @@ public class Main {
 		Heap heap = new Heap();
 		// input for Heap creation
 		Integer[] intArray = new Integer[] { null, 45, 65, 72, null, 40, 90, 82, 81, 96, 99, null, null, null };
-		Iterable input;
+		Iterable<Integer> input;
 		
 		System.out.println("\nMin heap...\n");
 		Context context = new Context(new MinHeapCompare());

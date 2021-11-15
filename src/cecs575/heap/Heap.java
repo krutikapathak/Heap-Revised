@@ -5,35 +5,26 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.function.Consumer;
 
-/**
- * 
- * Team members: Krutika Pathak(026737072)
- *
- */
-
 // class for heap creation and printing the heap in In-order
 public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	InnerNode node = new InnerNode();
 	private Context strategy;
 	Node element = new NullNode();
 
-	public void setStrategy(Context context) {
+	protected void setStrategy(Context context) {
 		strategy = context;
 	}
 
-	public Node getElement() {
+	protected Node getElement() {
 		return this.element;
 	}
 
 	protected void createHeap(Integer[] intArray) {
-		for (Integer i = 0; i < intArray.length; i++) {
+		for (int i = 0; i < intArray.length; i++) {
 			boolean isAdded;
-			if (intArray[i] != null)
-				isAdded = add(intArray[i]);
-			else
-				continue;
+			isAdded = add(intArray[i]);
 			if (!isAdded)
-				System.out.println("Heap not created");
+				System.out.println("Null node not added to the heap");
 		}
 	}
 
@@ -41,7 +32,7 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	public boolean add(Integer num) {
 		if (num != null)
 			element = node.insert(element, num, strategy);
-		if (element.isNil()|| num == null)
+		if (element.isNil() || num == null)
 			return false;
 		return true;
 	}

@@ -7,33 +7,33 @@ public abstract class Node implements Iterable<Integer> {
 	protected Node right;
 	protected Integer nodeVal;
 
-	public Node getLeft() {
+	protected Node getLeft() {
 		return left;
 	}
 
-	public void setLeft(Node left) {
+	protected void setLeft(Node left) {
 		this.left = left;
 	}
 
-	public Node getRight() {
+	protected Node getRight() {
 		return right;
 	}
 
-	public void setRight(Node right) {
+	protected void setRight(Node right) {
 		this.right = right;
 	}
 
-	public Integer getNodeVal() {
+	protected Integer getNodeVal() {
 		return nodeVal;
 	}
 
-	public void setNodeVal(Integer nodeVal) {
+	protected void setNodeVal(Integer nodeVal) {
 		this.nodeVal = nodeVal;
 	}
 
-	public abstract boolean isNil();
+	protected abstract boolean isNil();
 
-	public abstract Integer findHeight(Node node);
+	protected abstract Integer findHeight(Node node);
 
 	public abstract void forEach(Consumer<? super Integer> action);
 	

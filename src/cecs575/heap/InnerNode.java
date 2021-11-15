@@ -3,12 +3,6 @@ package cecs575.heap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-/**
- * 
- * Team members: Krutika Pathak(026737072)
- *
- */
-
 // class to represent Nodes in min heap- Node attributes, height and traversal
 public class InnerNode extends Node {
 
@@ -43,10 +37,9 @@ public class InnerNode extends Node {
 	}
 
 	protected Integer swapNode(Node root, Integer num) {
-		Integer temp = root.nodeVal;
+		Integer temp = root.getNodeVal();
 		root.setNodeVal(num);
-		num = temp;
-		return num;
+		return temp;
 	}
 
 	// method to find height for the given root
@@ -57,11 +50,11 @@ public class InnerNode extends Node {
 
 	@Override
 	public void forEach(Consumer<? super Integer> action) {
-		if (!this.left.isNil())
-			this.left.forEach(action);
+		if (!this.getLeft().isNil())
+			this.getLeft().forEach(action);
 		action.accept(this.getNodeVal());
-		if (!this.right.isNil())
-			this.right.forEach(action);
+		if (!this.getRight().isNil())
+			this.getRight().forEach(action);
 	}
 
 	@Override
@@ -78,16 +71,15 @@ public class InnerNode extends Node {
 	private String toString(Node root, StringBuilder string) {
 		if (root.isNil())
 			return "";
-		toString(root.left, string);
-		string.append(root.nodeVal);
+		toString(root.getLeft(), string);
+		string.append(root.getNodeVal());
 		string.append(" ");
-		toString(root.right, string);
+		toString(root.getRight(), string);
 		return string.toString();
 	}
 
 	@Override
 	public Iterator<Integer> iterator() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

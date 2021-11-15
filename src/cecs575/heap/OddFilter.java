@@ -14,15 +14,15 @@ public class OddFilter implements Iterator<Integer> {
 	}
 
 	private void pushInOrder(Node current) {
-		if (current == null)
-			return;
+		if (!current.isNil()) {
 
-		pushInOrder(current.getRight());
-		
-		if(current.getNodeVal() != null)
-			stack.push(current);
-
-		pushInOrder(current.getLeft());
+			pushInOrder(current.getRight());
+			
+			if(current.getNodeVal() != null)
+				stack.push(current);
+	
+			pushInOrder(current.getLeft());
+		}
 	}
 
 	@Override
