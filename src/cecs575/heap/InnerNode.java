@@ -3,7 +3,12 @@ package cecs575.heap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-// class to represent Nodes in min heap- Node attributes, height and traversal
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
+// class to represent not null Nodes in heap- Node attributes, height 
 public class InnerNode extends Node {
 
 	public InnerNode() {
@@ -11,13 +16,14 @@ public class InnerNode extends Node {
 		this.right = new NullNode();
 	}
 
-	// method to add integers to min heap
-	protected Node insert(Node root, Integer num, Context context) {
+	// Insert elements in heap based on the strategy passed by the client
+	protected Node insert(Node root, Integer num, HeapContext context) {
 		if (root.isNil()) {
 			root = new InnerNode();
 			root.setNodeVal(num);
 			return root;
 		}
+
 		if (context.executeStrategy(root.getNodeVal(), num))
 			num = swapNode(root, num);
 
@@ -25,36 +31,38 @@ public class InnerNode extends Node {
 		Integer lHeight = root.findHeight(root.getLeft());
 		Integer rHeight = root.findHeight(root.getRight());
 
-		// insert integer in left sub-heap
+		// insert element in left sub-heap
 		if (lHeight <= rHeight)
 			root.setLeft(insert(root.getLeft(), num, context));
 
-		// insert integer in right sub-heap
+		// insert element in right sub-heap
 		else if (lHeight > rHeight) {
 			root.setRight(insert(root.getRight(), num, context));
 		}
 		return root;
 	}
 
+	// Swap root with the new element
 	protected Integer swapNode(Node root, Integer num) {
 		Integer temp = root.getNodeVal();
 		root.setNodeVal(num);
 		return temp;
 	}
 
-	// method to find height for the given root
+	// Calculate the height for a given root
 	@Override
 	public Integer findHeight(Node node) {
 		return 1 + Math.max(node.findHeight(node.getLeft()), node.findHeight(node.getRight()));
 	}
 
+	// Internal iterator for "In-order" traversal of Heap
 	@Override
-	public void forEach(Consumer<? super Integer> action) {
+	public void forEach(Consumer<? super Integer> addToListAction) {
 		if (!this.getLeft().isNil())
-			this.getLeft().forEach(action);
-		action.accept(this.getNodeVal());
+			this.getLeft().forEach(addToListAction);
+		addToListAction.accept(this.getNodeVal());
 		if (!this.getRight().isNil())
-			this.getRight().forEach(action);
+			this.getRight().forEach(addToListAction);
 	}
 
 	@Override
@@ -62,12 +70,14 @@ public class InnerNode extends Node {
 		return false;
 	}
 
+	// Return an "in-order" string of heap elements
 	@Override
 	public String toString() {
 		StringBuilder inOrderHeapElements = new StringBuilder();
 		return toString(this, inOrderHeapElements);
 	}
 
+	// Build an "in-order" string for heap elements
 	private String toString(Node root, StringBuilder string) {
 		if (root.isNil())
 			return "";

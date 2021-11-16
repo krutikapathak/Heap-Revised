@@ -1,5 +1,10 @@
 package cecs575.heap;
 
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
 public class Main {
 	public static void main(String[] args) {
 		Heap heap = new Heap();
@@ -8,7 +13,7 @@ public class Main {
 		Iterable<Integer> input;
 		
 		System.out.println("\nMin heap...\n");
-		Context context = new Context(new MinHeapCompare());
+		HeapContext context = new HeapContext(new MinHeapCompare());
 		heap.setStrategy(context);
 		heap.createHeap(intArray);
 		System.out.println(heap.toString());
@@ -19,7 +24,7 @@ public class Main {
 
 		System.out.println("\nMax heap...\n");
 		heap = new Heap();
-		context = new Context(new MaxHeapCompare());
+		context = new HeapContext(new MaxHeapCompare());
 		heap.setStrategy(context);
 		heap.createHeap(intArray);
 		System.out.println(heap.toString());

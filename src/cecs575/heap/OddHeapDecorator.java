@@ -3,6 +3,12 @@ package cecs575.heap;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
+// Decorator class for the Heap to return only odd integers
 public class OddHeapDecorator extends HeapDecorator {
 
 	public OddHeapDecorator(Iterable<Integer> input) {
@@ -14,6 +20,7 @@ public class OddHeapDecorator extends HeapDecorator {
 		return new OddFilter(input);
 	}
 
+	// Return an "in-order" string of odd heap elements
 	@Override
 	public String toString() {
 		Iterator<Integer> iterator = iterator();
@@ -25,6 +32,7 @@ public class OddHeapDecorator extends HeapDecorator {
 		return inOrderOddElements.toString();
 	}
 
+	// Return an "in-order" array of odd heap elements
 	@Override
 	public Object[] toArray() {
 		Iterator<Integer> iterator = iterator();
