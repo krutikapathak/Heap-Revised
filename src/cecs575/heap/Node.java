@@ -2,6 +2,14 @@ package cecs575.heap;
 
 import java.util.function.Consumer;
 
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
+
+//class to represent Nodes in heap
+
 public abstract class Node implements Iterable<Integer> {
 	protected Node left;
 	protected Node right;
@@ -36,6 +44,6 @@ public abstract class Node implements Iterable<Integer> {
 	protected abstract Integer findHeight(Node node);
 
 	public abstract void forEach(Consumer<? super Integer> action);
-	
+
 	public abstract String toString();
 }

@@ -5,18 +5,24 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.function.Consumer;
 
-// class for heap creation and printing the heap in In-order
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
+
+// class for heap creation and In-order traversal of Heap 
 public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 	InnerNode node = new InnerNode();
-	private Context strategy;
-	Node element = new NullNode();
+	private HeapContext strategy;
+	Node root = new NullNode();
 
-	protected void setStrategy(Context context) {
+	protected void setStrategy(HeapContext context) {
 		strategy = context;
 	}
 
 	protected Node getElement() {
-		return this.element;
+		return this.root;
 	}
 
 	protected void createHeap(Integer[] intArray) {
@@ -28,32 +34,36 @@ public class Heap extends PriorityQueue<Integer> implements Iterable<Integer> {
 		}
 	}
 
+	//Add elements to heap
 	@Override
-	public boolean add(Integer num) {
-		if (num != null)
-			element = node.insert(element, num, strategy);
-		if (element.isNil() || num == null)
+	public boolean add(Integer element) {
+		if (element != null)
+			root = node.insert(root, element, strategy);
+		if (root.isNil() || element == null)
 			return false;
 		return true;
 	}
 
+	//Internal iterator for "In-order" traversal of Heap
 	@Override
-	public void forEach(Consumer<? super Integer> action) {
-		if (element.isNil())
+	public void forEach(Consumer<? super Integer> addToListAction) {
+		if (root.isNil())
 			return;
-		element.forEach(action);
+		root.forEach(addToListAction);
 	}
 
+	// Return an "in-order" array of heap elements 
 	@Override
 	public Object[] toArray() {
 		ArrayList<Integer> inOrderHeapElements = new ArrayList<Integer>();
-		this.forEach(number -> inOrderHeapElements.add(number));
+		this.forEach(heapElement -> inOrderHeapElements.add(heapElement));
 		return inOrderHeapElements.toArray();
 	}
 
+	// Return an "in-order" string of heap elements 
 	@Override
 	public String toString() {
-		return element.toString();
+		return root.toString();
 	}
 
 	@Override

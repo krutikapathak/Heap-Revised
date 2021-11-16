@@ -3,6 +3,12 @@ package cecs575.heap;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+/**
+ * 
+ * Team members: Krutika Pathak(026737072) and Shiva Singh(026774434)
+ *
+ */
+//Class to represent null nodes in Heap
 public class NullNode extends Node {
 
 	public NullNode() {
