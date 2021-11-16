@@ -8,7 +8,7 @@ package cecs575.heap;
 public class Main {
 	public static void main(String[] args) {
 		Heap heap = new Heap();
-		// input for Heap creation
+
 		Integer[] intArray = new Integer[] { null, 45, 65, 72, null, 40, 90, 82, 81, 96, 99, null, null, null };
 		Iterable<Integer> input;
 		
@@ -32,5 +32,7 @@ public class Main {
 		System.out.println("\nMax Heap Odd Numbers\n");
 		input = new OddHeapDecorator(heap);
 		System.out.println(input.toString());
+		
+		heap.runTests();
 	}
 }

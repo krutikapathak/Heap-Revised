@@ -1,8 +1,11 @@
 package cecs575.heap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Iterator;
-import org.junit.Before;
+
 import org.junit.Test;
 
 /**
@@ -16,8 +19,7 @@ public class OddHeapDecoratorPatternTest {
 	Heap heap = new Heap();
 	HeapContext minStrategy = new HeapContext(new MinHeapCompare());
 
-	// Test to verify in order traversal of Odd heap elements in an external
-	// iterator
+	// Test to verify in order traversal of Odd heap elements in an external iterator
 	@Test
 	public void testInorderExternalIterator() {
 		heap.setStrategy(minStrategy);
@@ -103,8 +105,8 @@ public class OddHeapDecoratorPatternTest {
 		}
 	}
 
-	// Test to verify the addition of only null nodes and traversal on the empty
-	// Heap
+	// Test to verify the addition of only null nodes 
+	// and traversal on the empty Heap
 	@Test
 	public void testEmptyHeap() {
 		heap.setStrategy(minStrategy);
